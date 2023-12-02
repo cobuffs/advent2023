@@ -5,33 +5,6 @@ const entries = fs.readFileSync('input1.txt', 'utf8').toString().trim().split("\
 //read each entry, find the first digit and the last digit, turn that into a 2 digit number and sum them all
 let values = [];
 
-// (entries).forEach(entry => {
-//     let first = null;
-//     let last = null;
-//     for(var i = 0; i < entry.length; i++) {
-//         if(entry[i] >= '0' && entry[i] <= '9') {
-//             first = entry[i];
-//             break;
-//         }
-//     }
-//     for(var i = entry.length - 1; i >= 0; i--) {
-//         if(entry[i] >= '0' && entry[i] <= '9') {
-//             last = entry[i];
-//             break;
-//         }
-//     }
-//     const v = first + last;
-//     values.push(parseInt(v, 10));
-// });
-
-// console.log(values.reduce((total, current) => total + current, 0));
-
-//part 2 - numbers may actually be spelled out
-
-//zero, one, two, three, four, five, six, seven, eight, nine
-//orez, eno, owt, eerht, ruof, evif, xis, neves, thgie, enin
-//get the index of all the possible strings and compare them to the actual numbers
-
 (entries).forEach(entry => {
     let first = null;
     let last = null;
@@ -71,7 +44,7 @@ console.log(values.reduce((total, current) => total + current, 0));
 
 function checkstrfornum(str, direction) {
     //direction is from the start or the end
-    let checks = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+    const checks = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
     const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
     for (let i = 0; i < digits.length; i++) {
         if(direction == 0) {
