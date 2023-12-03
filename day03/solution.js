@@ -33,10 +33,6 @@ for(var row = 0; row < schematic.length; row++) {
             }
             //reset
             partnum = {'num':'', 'row': row, 'mincol':0, 'maxcol':0};
-            if(entry == '*') {
-                //possible gear
-                //possiblegears.push({'row': row, 'col': col, 'parts':[]});
-            }
         }
     }
 }
