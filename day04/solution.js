@@ -43,7 +43,6 @@ function part2() {
             if(scratchcards.has(card.id + j)) {
                 let tempcard = scratchcards.get(card.id + j);
                 tempcard.instances = tempcard.instances + cardtracker.instances;
-                scratchcards.set(card.id + j, tempcard);
             } else {
                 let tempcard = {'card': cards[card.id + j - 1], 'instances': cardtracker.instances};
                 scratchcards.set(card.id + j, tempcard);
