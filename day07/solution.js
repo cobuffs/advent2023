@@ -71,7 +71,7 @@ function getpokertype(hand) {
     });
 
     if(wildcards > 0) {
-        if (wildcards === 5 || wildcards === 4 || fours > 0 || (threes > 0 && wildcards > 1) || (pairs === 1 && wildcards === 3)) {
+        if (wildcards === 5 || wildcards === 4 || fours === 1 || (threes === 1 && wildcards === 2) || (pairs === 1 && wildcards === 3)) {
             return 7;
         } else if ((pairs === 0 && wildcards === 3 ) || (pairs === 1 && wildcards === 2) || (threes === 1 && wildcards === 1)) {
             fours++;
