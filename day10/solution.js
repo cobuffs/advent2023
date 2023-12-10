@@ -188,18 +188,19 @@ function part2() {
 }
 
 function nonlolp2() {
+    //we use the shoelack formula + pick's theorem to find the number of points contained in a polygon on graph paper
     console.log(calculatePolygonArea(shoelacecoords) - (path / 2) + 1);
 }
 
 function calculatePolygonArea(vertices) {
     let area = 0;
+    const numVertices = vertices.length;
 
-    for (let i = 0; i < vertices.length; i++) {
-        let j = (i + 1) % vertices.length; // Wrap around to the first vertex
-        area += vertices[i].x * vertices[j].y;
-        area -= vertices[j].x * vertices[i].y;
+    for (let i = 0; i < numVertices; i++) {
+        const current = vertices[i];
+        const next = vertices[(i + 1) % numVertices]; // This ensures the last vertex connects to the first
+        area += current.x * next.y - current.y * next.x;
     }
-
     return Math.abs(area / 2);
 }
 
