@@ -28,6 +28,7 @@ let location = locations[startingloc];
 location.inloop = true;
 let previous = null;
 let max = 0;
+let shoelacecoords = [{'x':location.col, 'y':location.row}];
 
 while(true) {
     let nextlocation = nextloc(location, previous);
@@ -36,10 +37,12 @@ while(true) {
     nextlocation.inloop = true;
     previous = location;
     location = nextlocation;
+    shoelacecoords.push({'x':location.col, 'y':location.row});
     max = location.distance;
 }
 console.log((max + 1) / 2);
 part2();
+nonlolp2();
 
 function nextloc(location, previousloc) {
     if (previousloc === null){
@@ -181,6 +184,23 @@ function part2() {
     
 }
 
+function nonlolp2() {
+    console.log(calculatePolygonArea(shoelacecoords) - max + ((max + 1) / 2));
+}
+
+function calculatePolygonArea(vertices) {
+    let area = 0;
+
+    for (let i = 0; i < vertices.length; i++) {
+        let j = (i + 1) % vertices.length; // Wrap around to the first vertex
+        area += vertices[i].x * vertices[j].y;
+        area -= vertices[j].x * vertices[i].y;
+    }
+
+    return Math.abs(area / 2);
+}
+
+
 function printgrid() {
     for(let row = 0; row < entries.length; row++) {
         let line = '';
@@ -211,7 +231,7 @@ function printgrid() {
                 line = line + printviz;
             }
             else if (!possibles.has(`${row},${col}`)) line = line + ' ';
-            else line = line + 'x';
+            else line = line + ' ';
         }
         console.log(line);
     }
