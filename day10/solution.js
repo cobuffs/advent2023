@@ -28,11 +28,13 @@ let location = locations[startingloc];
 location.inloop = true;
 let previous = null;
 let max = 0;
+let path = 1;
 let shoelacecoords = [{'x':location.col, 'y':location.row}];
 
 while(true) {
     let nextlocation = nextloc(location, previous);
     if(`${nextlocation.row},${nextlocation.col}` === startingloc) break;
+    path++;
     nextlocation.distance = location.distance + 1;
     nextlocation.inloop = true;
     previous = location;
@@ -40,7 +42,8 @@ while(true) {
     shoelacecoords.push({'x':location.col, 'y':location.row});
     max = location.distance;
 }
-console.log((max + 1) / 2);
+//close the loop
+console.log(max / 2);
 part2();
 nonlolp2();
 
@@ -185,7 +188,7 @@ function part2() {
 }
 
 function nonlolp2() {
-    console.log(calculatePolygonArea(shoelacecoords) - max + ((max + 1) / 2));
+    console.log(calculatePolygonArea(shoelacecoords) - (path / 2) + 1);
 }
 
 function calculatePolygonArea(vertices) {
