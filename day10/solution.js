@@ -46,6 +46,7 @@ while(true) {
 console.log(max / 2);
 part2();
 nonlolp2();
+getPossiblesInPoly();
 
 function nextloc(location, previousloc) {
     if (previousloc === null){
@@ -185,6 +186,24 @@ function part2() {
     console.log(blobcount);
     printgrid();
     
+}
+
+function rayp2() {
+    getPossiblesInPoly();
+}
+
+function getPossiblesInPoly() {
+    let count = 0;
+    for(let row = 0; row < entries.length; row++) {
+        let countIt = false;
+        for(let col = 0; col < entries[row].length; col++) {
+            const tile = locations[`${row},${col}`];
+            if(tile.inloop && (tile.value === 'F' || tile.value === '7' || tile.value === '|')) {
+                countIt = !countIt
+            } else if (possibles.has(`${row},${col}`) && countIt) count++;
+        }
+    }
+    console.log(`Count using rays: ${count}`);
 }
 
 function nonlolp2() {
